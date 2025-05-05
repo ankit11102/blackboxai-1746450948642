@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Event - Bebo Event Management</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            border: 1px solid rgba(209, 213, 219, 0.3);
+            max-width: 700px;
+            margin: auto;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(209, 213, 219, 0.5);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        Bebo
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Home</a>
+                    <a href="events.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Events</a>
+                    <a href="profile.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Profile</a>
+                    <a href="login.html" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">Login</a>
+                    <a href="signup.html" class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900">Sign Up</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars text-gray-600 text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu hidden md:hidden">
+            <a href="index.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Home</a>
+            <a href="events.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Events</a>
+            <a href="profile.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Profile</a>
+            <a href="login.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Login</a>
+            <a href="signup.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Sign Up</a>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-12">
+        <div class="form-card">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Create New Event</h2>
+            <form id="createEventForm" class="space-y-6">
+                <div>
+                    <label for="eventName" class="block text-sm font-medium text-gray-700">Event Name</label>
+                    <input type="text" id="eventName" name="eventName" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500" />
+                </div>
+                <div>
+                    <label for="eventCategory" class="block text-sm font-medium text-gray-700">Category</label>
+                    <select id="eventCategory" name="eventCategory" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500">
+                        <option value="">Select a category</option>
+                        <option value="Music">Music</option>
+                        <option value="Theater">Theater</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Education">Education</option>
+                        <option value="Art">Art</option>
+                        <option value="Food & Drink">Food & Drink</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="eventDate" class="block text-sm font-medium text-gray-700">Date</label>
+                    <input type="date" id="eventDate" name="eventDate" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500" />
+                </div>
+                <div>
+                    <label for="eventLocation" class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" id="eventLocation" name="eventLocation" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500" />
+                </div>
+                <div>
+                    <label for="eventPrice" class="block text-sm font-medium text-gray-700">Price (USD)</label>
+                    <input type="number" id="eventPrice" name="eventPrice" min="0" step="0.01" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500" />
+                </div>
+                <div>
+                    <label for="eventDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="eventDescription" name="eventDescription" rows="4" required
+                        class="input-field mt-1 block w-full rounded-md px-4 py-3 focus:ring-purple-500 focus:border-purple-500"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit"
+                        class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                        Create Event
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4">Bebo</h3>
+                    <p class="text-gray-400">Making event management simple and effective</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="profile.html" class="text-gray-400 hover:text-white">Profile</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© 2022 Bebo. Created by Ankit</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Handle form submission
+        const createEventForm = document.getElementById('createEventForm');
+        createEventForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const eventName = document.getElementById('eventName').value.trim();
+            const eventCategory = document.getElementById('eventCategory').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventLocation = document.getElementById('eventLocation').value.trim();
+            const eventPrice = document.getElementById('eventPrice').value;
+            const eventDescription = document.getElementById('eventDescription').value.trim();
+
+            if (!eventName || !eventCategory || !eventDate || !eventLocation || !eventPrice || !eventDescription) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Save event to localStorage (simulate backend)
+            let userEvents = JSON.parse(localStorage.getItem('userEvents')) || [];
+            userEvents.push({
+                name: eventName,
+                category: eventCategory,
+                date: eventDate,
+                location: eventLocation,
+                price: eventPrice,
+                description: eventDescription
+            });
+            localStorage.setItem('userEvents', JSON.stringify(userEvents));
+
+            alert('Event created successfully!');
+
+            // Redirect to profile page
+            window.location.href = 'profile.html';
+        });
+    </script>
+</body>
+</html>
