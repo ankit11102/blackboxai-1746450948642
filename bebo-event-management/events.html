@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Bebo Event Management</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .event-card {
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .category-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        Bebo
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Home</a>
+                    <a href="events.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Events</a>
+                    <a href="profile.html" class="text-gray-800 hover:text-purple-600 px-3 py-2 rounded-md font-medium">Profile</a>
+                    <a href="login.html" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">Login</a>
+                    <a href="signup.html" class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900">Sign Up</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars text-gray-600 text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <a href="index.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Home</a>
+            <a href="events.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Events</a>
+            <a href="profile.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Profile</a>
+            <a href="login.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Login</a>
+            <a href="signup.html" class="block text-gray-800 hover:bg-purple-600 hover:text-white px-4 py-2">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="pt-16 bg-gradient-to-r from-purple-600 to-indigo-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-white mb-4">
+                    Discover Amazing Events
+                </h1>
+                <p class="text-xl text-purple-100">
+                    Find and book the perfect event for you
+                </p>
+            </div>
+            <!-- Search Bar -->
+            <div class="max-w-3xl mx-auto mt-8">
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <input type="text" placeholder="Search events..." 
+                            class="w-full px-6 py-3 rounded-lg border-0 focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <button class="bg-purple-700 text-white px-8 py-3 rounded-lg hover:bg-purple-800 transition-colors duration-300">
+                        <i class="fas fa-search mr-2"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Scroll -->
+    <div class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex space-x-4 overflow-x-auto scrollbar-hide">
+                <button class="category-badge text-white px-6 py-2 rounded-full whitespace-nowrap">
+                    All Events
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-music mr-2"></i>Music
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-theater-masks mr-2"></i>Theater
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-futbol mr-2"></i>Sports
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-graduation-cap mr-2"></i>Education
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-paint-brush mr-2"></i>Art
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-full whitespace-nowrap">
+                    <i class="fas fa-utensils mr-2"></i>Food & Drink
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Event Card 1 -->
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg" 
+                    alt="Music Concert" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="category-badge text-white text-sm px-3 py-1 rounded-full">Music</span>
+                            <h3 class="mt-3 text-xl font-bold text-gray-900">Summer Music Festival</h3>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-700">
+                            <i class="far fa-heart text-xl"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 mb-4">Experience the best summer music festival with top artists and bands.</p>
+                    <div class="flex items-center text-gray-600 text-sm mb-4">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        July 15, 2024
+                        <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
+                        Central Park, NY
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-purple-600 font-bold">$49.99</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 2 -->
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg" 
+                    alt="Theater Show" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="category-badge text-white text-sm px-3 py-1 rounded-full">Theater</span>
+                            <h3 class="mt-3 text-xl font-bold text-gray-900">Broadway Musical Night</h3>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-700">
+                            <i class="far fa-heart text-xl"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 mb-4">An unforgettable night of musical theater performances.</p>
+                    <div class="flex items-center text-gray-600 text-sm mb-4">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        June 20, 2024
+                        <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
+                        Broadway Theater
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-purple-600 font-bold">$89.99</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 3 -->
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg" 
+                    alt="Tech Conference" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="category-badge text-white text-sm px-3 py-1 rounded-full">Education</span>
+                            <h3 class="mt-3 text-xl font-bold text-gray-900">Tech Innovation Summit</h3>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-700">
+                            <i class="far fa-heart text-xl"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 mb-4">Join industry leaders for a day of tech talks and networking.</p>
+                    <div class="flex items-center text-gray-600 text-sm mb-4">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        August 5, 2024
+                        <i class="fas fa-map-marker-alt ml-4 mr-2"></i>
+                        Tech Center
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-purple-600 font-bold">$199.99</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More event cards can be added here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button class="bg-white text-purple-600 px-8 py-3 rounded-lg border-2 border-purple-600 hover:bg-purple-600 hover:text-white transition-colors duration-300">
+                Load More Events
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4">Bebo</h3>
+                    <p class="text-gray-400">Making event management simple and effective</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="profile.html" class="text-gray-400 hover:text-white">Profile</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© 2022 Bebo. Created by Ankit</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu and event filtering -->
+    <script>
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Event filtering by category
+        const categoryButtons = document.querySelectorAll('.category-badge, .category-filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        // Add category filter buttons class to existing buttons
+        document.querySelectorAll('.flex.space-x-4.overflow-x-auto > button').forEach(btn => {
+            btn.classList.add('category-filter-btn');
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.textContent.trim().toLowerCase();
+                // Highlight active button
+                categoryButtons.forEach(btn => btn.classList.remove('category-badge'));
+                button.classList.add('category-badge');
+
+                eventCards.forEach(card => {
+                    if (category === 'all events') {
+                        card.style.display = 'block';
+                    } else {
+                        const cardCategory = card.querySelector('span').textContent.trim().toLowerCase();
+                        if (cardCategory === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
